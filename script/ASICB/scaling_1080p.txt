@@ -1,0 +1,56 @@
+
+// ASICB
+D:FFFF:0000_0010
+
+D:0018:0000_0001    // [ 0]reg_one_path_en_=1
+                    // [ 4]reg_cs_yuv_=0
+                    // [ 8]reg_rgb2yuv_en_=0
+                    // [12]reg_yuv2rgb_en_=0
+                    // [16]reg_sys_di_en_=0
+D:001C:0001_1111    // [ 0]reg_en_Main_Video=1
+                    // [ 4]reg_en_dispmask=1
+                    // [ 8]reg_en_tg_main=1
+                    // [12]reg_en_display_mixer_atSyncFail=1
+                    // [16]reg_en_show_bkgrnd_atSyncFail=1
+
+// bypass control
+D:0020:0001_007F    // [ 0] bypass get_pixel_0=1
+                    // [ 1] bypass rgb2yuv=1
+                    // [ 2] bypass get_pixel_1=1
+                    // [ 3] bypass dispmask=1
+                    // [ 4] bypass nr_di_3d=1
+                    // [ 5] bypass yuv2rgb=1
+                    // [ 6] bypass get_pixel_2_0/1/2/3=1
+
+// dispmask
+D:0024:0780_0438    // in size
+D:0028:0000_0000    // offset
+D:002C:0780_0438    // out size
+
+// scaler
+D:003C:0000_1000    // reset count
+D:0044:0898_0058    // htotal, hsync
+D:0048:00EC_0780    // hstart, hsize
+D:004C:0465_0005    // vtotal, vsync
+D:0050:0029_0438    // vstart, vsize
+D:0054:0438_0780    // outmask size
+D:0058:0000_0000    // outmask offset
+
+D:0004:0000_000f    // select path0
+D:0008:0000_0004    // ip = Scaler
+D:000C:0000_0000    // h ratio
+D:0010:0780_1000    // h ratio = 1.0
+D:000C:0000_0030    // v ratio
+D:0010:0000_1000    // v ratio = 1.0
+D:000C:0000_0040    //
+D:0010:0000_0001    // t_clki = 1
+
+D:0004:0000_000f    // select path0
+D:0008:0000_0003    // ip = tg_main
+D:000C:0000_0018
+D:0010:0000_0114    // [8] inp_vs_async=1, [4] reset_subsel=1, [2] sync_inp_clksel=1
+D:000C:0000_001C
+D:0010:0000_0000    // [0] interlace mode = 0
+
+// double buffer write
+D:001C:0301_1111

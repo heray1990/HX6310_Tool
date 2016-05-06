@@ -1,0 +1,30 @@
+//
+// HDMI------->INP------->AsicB------->FRC------->SHR------->Port-Tran------->VBO
+//      clk_pix   clk_pix_4   clk_frc_i  clk_frc_o    clk_o            clk_o2
+//                 148.5       148.5      148.5      148.5            74.25
+//                 FRC/2       FRC/2      FRC/2      FRC/2            FRC/4
+
+// use DEBUG I2C
+A:80010000:00000000
+
+D:FFFF:00000000
+
+// System 20h
+// [26]    clk_pix_1_2 = {*HDMI, HDMI/2}
+// [25:24] clk_pix_1_2_4 = {*FRC/2, HDMI, HDMI/4, FRC/4}
+// [22:21] clk_frc_i = {*FRC/2, FRC/4, HDMI, 0}
+// [20:19] clk_frc_i_s_x8 = {FRC/2, FRC/4, HDMI/4, *PLLS}
+// [18:16] clk_frc_o = {*FRC/2, FRC, HDMI/4, HDMI/2, PLLS}
+// [14:11] clk_o = {FRC/8, FRC/4, *FRC/2, 3=HDMI/4, 7=HDMI/2, 11=PLLS}
+// [10:8]  clk_o2 = {FRC/8, *FRC/4, HDMI/8, HDMI/4, PLLS/2}
+// [6:4]   clk_o2_vbo = {FRC/8, *FRC/4, HDMI/8, HDMI/4, PLLS/2}
+// [3]     clk_s = {PLLS/8, *PLLS/4}
+// [2]     clk_s_apb = {PLLS/8, *PLLS/4}
+// [1]     clk_s_ahb = {PLLS/4, *PLLS/2}
+// [0]     clk_s_cpu = {PLLS/2, *PLLS}
+D:0020:0018111F
+
+// [18:16] clk_audio = {clk_i2s, clk_i2s, clk_i2s, clk_i2s, PLLS/4, PLLS/8, PLLS/16, PLLS/32}
+// [0]     standby_mode
+D:001C:00000000
+

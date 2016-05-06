@@ -1,0 +1,35 @@
+
+
+// use DEMUX I2C0
+  DEMUX:0
+
+
+// use DEBUG I2C
+  A:8001_0000:0000_0000
+
+
+//97.453125MHz
+
+// HDMI AIP P1 PowerDown
+  D:FFFF:0000_0009
+  // Step 1
+  D:006C:0000_0300
+// DeepColor PLL PowerDown
+  D:003C:0000_0000
+// Audio PLL PowerDown
+  D:004C:0000_0000
+
+
+// HDMI
+  D:FFFF:0000_0008
+  D:FFFF:0000_0008
+  D:0000:0020_1F00
+  D:0004:FFFF_0000
+  D:0008:0000_00C8
+  D:00C0:0000_0020
+  //** audio setting
+  D:0014:00C4_0000
+  D:0024:3EB0_50CF
+
+
+

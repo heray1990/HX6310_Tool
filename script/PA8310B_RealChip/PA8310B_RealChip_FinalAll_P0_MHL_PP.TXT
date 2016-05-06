@@ -1,0 +1,370 @@
+// Set PPLS
+// PLLS 196.608MHz
+
+// use DEBUG I2C
+A:80010000:00000000
+
+D:FFFF:00000000
+
+
+// Initial Setting
+// EN_LDOVCO=0, DITHEN=0, ENSCGDIV=0
+D:0028:07880800
+D:002c:003733c0
+D:0030:55040440
+D:0034:00001c00
+D:0038:09a00000
+D:003c:00000200
+// EN_CP=0, INI_BIAS=0
+D:0080:00000000
+// refclk=24576-->24576, CLKR=1
+// OutClock=196608, VCO_Clock=786432, CLKOD=2
+// int_part=32, frac_part=0/65536, CLKF=200000
+// SSEN=0
+D:0028:07880800
+D:002c:003723c0
+D:0030:55040440
+D:0034:00001c00
+D:0038:04000004
+D:003c:00000200
+// EN_LDOVCO=1
+D:003c:00000300
+// EN_CP=1, INI_BIAS=1
+D:0080:00000fff
+
+// Set PLLFRC_297000
+// PLLFRC 297.0MHz
+D:FFFF:00000000
+// Initial Setting
+// EN_LDOVCO=0, DITHEN=0, ENSCGDIV=0
+D:0058:07880800
+D:005c:003733c0
+D:0060:55040440
+D:0064:00001c00
+D:0068:09a00000
+D:006c:00000200
+// EN_CP=0, INI_BIAS=0
+D:0080:00000000
+// refclk=24576-->24576, CLKR=1
+// OutClock=297000, VCO_Clock=594000, CLKOD=1
+// int_part=24, frac_part=11136/65536, CLKF=152b80
+// SSEN=0
+D:0058:07880800
+D:005c:003723c0
+D:0060:55040440
+D:0064:00001c00
+D:0068:02a57002
+D:006c:00000200
+// EN_LDOVCO=1
+D:006c:00000300
+// DITHEN=1
+D:005c:003727c0
+// EN_CP=1, INI_BIAS=1
+D:0080:00000fff
+
+//
+// HDMI------->INP------->AsicB------->FRC------->SHR------->Port-Tran------->VBO
+//      clk_pix   clk_pix_4   clk_frc_i  clk_frc_o    clk_o            clk_o2
+//       594       148.5                   148.5      148.5           74.25
+//       HDMI      HDMI/4                  HDMI/4     HDMI/4          HDMI/8
+
+// use DEBUG I2C
+A:80010000:00000000
+
+D:FFFF:00000000
+
+// System 20h
+// [26]    clk_pix_1_2 = {HDMI, *HDMI/2}
+// [25:24] clk_pix_1_2_4 = {FRC/2, HDMI, *HDMI/4, FRC/4}
+// [22:21] clk_frc_i = {FRC/2, FRC/4, *HDMI/4, 0}
+// [20:19] clk_frc_i_s_x8 = {FRC/2, FRC/4, HDMI/4, *PLLS}
+// [18:16] clk_frc_o = {FRC/2, FRC, *HDMI/4, HDMI/2, PLLS}
+// [14:11] clk_o = {FRC/8, FRC/4, FRC/2, *3=HDMI/4, 7=HDMI/2, 11=PLLS}
+// [10:8]  clk_o2 = {FRC/8, FRC/4, *HDMI/8, HDMI/4, PLLS/2}
+// [6:4]   clk_o2_vbo = {FRC/8, FRC/4, *HDMI/8, HDMI/4, PLLS/2}
+// [3]     clk_s = {PLLS/8, *PLLS/4}
+// [2]     clk_s_apb = {PLLS/8, *PLLS/4}
+// [1]     clk_s_ahb = {PLLS/4, *PLLS/2}
+// [0]     clk_s_cpu = {PLLS/2, *PLLS}
+D:0020:065A1A2F
+
+// [18:16] clk_audio = {clk_i2s, clk_i2s, clk_i2s, clk_i2s, PLLS/4, PLLS/8, PLLS/16, PLLS/32}
+// [0]     standby_mode
+D:001C:00000000
+
+//Set inp_4ptp_free_shr_backend
+// INP
+  D:FFFF:0000_0014
+
+// INP front TPG
+//D:0008:0000_0001
+  D:000C:0465_0898
+  D:0010:2905_C02C
+  D:0014:0438_0780
+//D:0018:00FF_00F9  // color-ramp
+  D:0018:00FF_00F2  // boarder + motion-bar
+  D:001C:123D_1634
+  D:0020:03CA_0222
+  D:0024:0000_0000
+  D:0028:0438_0780
+//D:0030:000F_0010  // INP 1 path out
+  D:0030:000F_0011  // INP 4 path out
+  D:0008:0000_0000
+
+
+// INP apricot TPG
+//D:008C:6A04_0000  // pat_mode = 5
+  D:008C:7204_0000  // pat_mode = 9
+  D:0090:08CA_044C
+  D:00A4:5260_0A16
+  D:0098:0870_03C0
+  D:009C:01E5_0444
+  D:00A0:3FFF_FFFF
+  D:00A4:3FFF_FFFF
+  D:00A8:3FF0_0400
+  D:00AC:0F00_0870
+  D:00B0:0009_0000
+  D:00B4:4000_0000
+  D:00B8:0000_0000
+  D:00BC:0000_0000
+  D:00C0:0000_1000  // Bypass TP => 1
+//D:00C0:0000_0000  // Bypass TP => 0
+  
+//INP
+   D:0038:0000_0031
+
+
+// ASIC_B input select (fpga only)
+  D:FFFF:0000_0000
+  D:00FC:0000_0000  // from INP 
+//D:00FC:0000_0001  // from LVDS
+
+
+// ASIC_B
+  D:FFFF:0000_0010
+  D:0020:0001_0061  // bypass ASIC B
+
+
+
+// System
+  D:FFFF:0000_0000
+  D:0018:0000_0002  // Bypass FRC
+//D:0018:0000_0000  // Through FRC
+D:00A8:0000_8000  // eo2fb_eo2fb_en => 1
+//D:00A8:0000_0000  // eo2fb_eo2fb_en => 0
+
+// MISC
+  D:FFFF:0000_0001
+  D:0018:AAAA_2AA0
+  D:0004:000B_E717
+  D:000C:0007_FFFF
+
+// PB2AXI
+//D:FFFF:0000_000B
+//D:0114:0000_0004  // release master
+
+
+
+// PB2AXI
+  D:FFFF:0000_000B
+  D:0114:0000_0004  // release master
+
+
+
+// ASIC C
+  D:FFFF:0000_0013
+  D:000C:0001_8000  // bypass ASIC C
+
+
+// Backend
+  D:FFFF:0000_000E
+  D:0004:0870_0118  // vsize = 2160, vde_gen_ext = 280(?)
+  D:0008:060F_FFFF  // bypass[7] => 0 : bypass from backend input
+                    // bypass[6] => 1 : bypass gamma & dithering
+                    // bypass[5] => 1 : bypass from backend input
+
+  D:0080:4A16_044C
+  D:0084:08CA_03C0
+  D:0088:C870_480A
+//D:008C:2FFC_0240  // pat = 9
+//D:008C:2FFC_0180  // pat = 5
+  D:008C:6FFC_0180  // bypassTP = 1
+  D:0090:3FFF_FFFF
+  D:00DC:0000_0084
+
+
+// OSD TP
+//D:005C:E898_C02C  // tg_release_freerun = 1
+  D:005C:6898_C02C  // tg_en = 0, from backend input
+  D:0060:0465_0780
+  D:0064:0438_2905
+  D:0068:0000_0000
+
+  D:0074:0000_FFF1
+  D:0078:FFFF_FFFF
+  D:007C:03CA_0222
+
+//D:0000:0000_0005  // dbg=5   pi_SHR
+//D:0000:0000_0014  // dbg=20  po_SHR
+//D:0000:0000_0038  // dbg=55  pi_port_train
+
+
+  A:18000000:0438_0780  //hsize,vsize
+  A:18000004:00F0_C030  //
+  A:18000010:0000_0800  //x step
+  A:18000014:0000_0800  //y step
+  A:18000018:0000_0000
+  A:1800001C:0000_0000
+  A:18000020:0000_0007
+  A:18000024:0001_0000  //TS off
+//A:18000024:0000_0000  //TS on
+  A:1800002C:0000_00C0
+  A:1800005C:0000_0000
+  A:18000060:0000_0000
+  A:18000064:0000_0000
+  A:18000068:0000_0000
+
+  A:18002000:0000_0001
+  A:18003000:0000_0001
+
+  A:18001000:0000_0001
+  A:18001004:0028_044C  //htotal,hsync
+  A:18001008:03C0_0050  //hstart,hsize
+  A:1800100C:0005_0898  //vtotal,vsize
+  A:18001010:0870_000A  //vstart,vsize
+  A:18001014:0001_8605  //reset,count
+  A:18001018:0000_0000
+  A:1801F000:0000_0001  //double buffer load
+  A:1801F018:0000_0000
+  A:1801F000:0000_0001  //double buffer load
+
+//Set VBO PHY
+  D:FFFF:0000_0002
+  D:0000:10FF_1200   //EN_VCOPH=1
+  D:001C:0000_0014   //BG_PD=1
+  D:0024:01FF_0118  //EN_BW_POST=0
+  D:002C:0001_0000  //PWN=1,RST_LANE=0,RST_BIST=0,INI_BIAS=0,EN_CP=0
+  D:0008:0041_0100  //CKS[7:0]=0,SDM_PL=1,CLKF[23:15]=80,DELTAM[7:0]=0
+  D:0018:3D00_0001  //EN_VCO=1,EN_XTAL_IN=0,REG_DITHEN=0,EN_LDOVCO=0,EN_SCGDIV=0,SSEN=0,CLKR[5:3]=0
+  D:0000:10FF_1200  //EN_VCOPH=1,CLKF[7]=0
+  D:0004:0000_0000  //DELTAM[15:8]=0,CLKF[6:0]=0,CLKF[14:8,LSB]=0,CROSS_P=0
+  D:000C:0000_E000  //CKS[10:8]=0
+  D:0010:0024_1000  //REF_8_16=0,CLKOD[2:0]=0,CLKR[2:0]=4
+  D:0018:3D40_0001  //EN_VCO=1,EN_XTAL_IN=0,REG_DITHEN=0,EN_LDOVCO=1,EN_SCGDIV=0,SSEN=0,CLKR[5:3]=0
+  D:002C:001F_0000  //PWN=1,RST_LANE=1,RST_BIST=1,INI_BIAS=1,EN_CP=1
+  D:002C:0001_0000  //PWN=1,RST_LANE=0,RST_BIST=0,INI_BIAS=0,EN_CP=0
+  
+//**** MHL AIP P0 Normal ****
+D:FFFF:0000_0009
+// Step 1 :(initial power down)
+// PowerDown_Mode (1D[1]/6D[1])=1 ; STANDBY_MODE (1D[0]/6D[0])=1
+D:001C:0000_0300
+// Step 2 :(inital value)
+//   EAh(en clk):[7]:En HDMI_ClkPath;[6:5]:LDO voltage of one Lane(0=1.4V;1=1.35V;2=1.3V;3=1.25V;4=1.2V;5=1.15V;6=1.1V;7=1.05V);[3]:En MHL_ClkPath;[2]:En Ln2_LDO(EQ & CDR);[1]:En Ln1_LDO(EQ & CDR & Ln1/2 digital);[0]:En Ln0 LDO(EQ & CDR & lane0 digital)
+//   EBh(terminal):[7]:En 50ohm_CK;[6]:En 50ohm_Ln2_Data;[5]:En 50ohm_Ln1_Data;[4]:En Cmn_Mode_Imp_Ln0_Data;[3]:En_Diff_Imp_Ln0_Data;[2]:En_Zrxsense_term_Ln0_Data;[1]:En_Auto_Imp_matching_circuit;[0]:En 24.576MHz_crystal_Clk
+D:00E8:F920_0000
+//   ECh:[7]:Rst_Logic;[6]:INDET_SEL[2];[5:4]:INDET_SEL[1:0];[3]:EXT_R DC tes;[2]:BAND_SEL[2] for BAND_Det 1(0=InClk/4 for HDMI1.4;0=MHL2.0 pack pixel mode);[1]:BAND_SEL[1] for BAND_Det 2(0=InClk/4 for none;0=MHL2.0 24-bit mode);[0]:BAND_SEL[0] to choose [2] or [1]
+//     STB_AREG2 = 47 @ MHL20_TYPE = 0(24bit_Mode);= 46 @ MHL20_TYPE = 1(PP_Mode)
+D:00EC:4A00_4446
+D:00F0:0000_0096
+//   00h:
+D:0000:0062_9011
+D:0004:ABC1_5800
+D:0008:A08C_1088
+//   0Eh:[7:6]:CDR_InClk_Sel(0=TMDS_CKOUT;1=MHL_CKOUT;2=EBUS_SCKIN;3=XTAL_CKIN);[5]:OSC_MODE;[4]:SEL_DATA10(0=Sel_20-bit;1=Sel_10-bit(def));[3:2]:CDR SEL_LOCK[1:0];[1]:SPEED_SEL(0=10-bit_Out;1=20-bit_Out)[0]:EN_VCOCLKO
+D:000C:5C7B_C060
+//..   10h=3A and 11h=61 and 13h=64
+//..   12h(PackPixel=14h/24bit=0F):
+D:0010:6414_613A
+D:0014:0000_0000
+//   18h:[7:6]:PEAK_STEP[1:0],EQ peaking counter step;[5:0]: EQ calibration loop offset tuning under the rate selected by
+D:0018:0220_E521
+D:001C:0000_0020
+// Step 3(enter standby mode)
+D:001C:0000_0120
+// Step 4 :STB_AREG0 (EAh/F1h)= 28  (enable MHL CK path)
+D:00E8:F928_0000
+// Step 5 :(enter normal mode)
+//   1Ch:[7]:Sel_Data_Rate_Range for Linear EQ low bound;[6:4]:Set_Linear EQ low bound with meeting [7];[2]:Ln2 ALL_RSTN(rst EQ & CDR);[1]:Ln1 ALL_RSTN;[0]:Ln0 ALL_RSTN
+D:001C:0000_0020
+// Step 6 :STB_AREG0 (EAh/F1h)=29, (enable lane 0 LDO)
+//   ECh:STB_AREG2 (ECh/F3h)=C7 @ MHL20_TYPE=0(24bit_Mode)   (reset logic);=C6 @ MHL20_TYPE=1(PP_Mode)  (reset logic)
+D:00E8:F929_0000
+D:00EC:4A00_44C6
+// Step 7 :AREG28 (1Ch/6Ch) =21 (reset lane 0)
+D:001C:0000_0021
+// Step 8 :AREG21 (15h/65h)=08 (PRBS detect enable)
+D:0014:0000_0800
+// Step 9 :AREG21 (15h/65h)=0F (PRBS detect start)
+D:0014:0000_0F00
+
+
+//**** HDMI AIP P1 Standby ****
+// Step 1 :(initial power down)
+// PowerDown_Mode (1D[1]/6D[1])=1 ; STANDBY_MODE (1D[0]/6D[0])=1
+D:006C:0000_0300
+// Step 2 :(inital value)
+//   EAh(en clk):[7]:En HDMI_ClkPath;[6:5]:LDO voltage of one Lane(0=1.4V;1=1.35V;2=1.3V;3=1.25V;4=1.2V;5=1.15V;6=1.1V;7=1.05V);[3]:En MHL_ClkPath;[2]:En Ln2_LDO(EQ & CDR);[1]:En Ln1_LDO(EQ & CDR & Ln1/2 digital);[0]:En Ln0 LDO(EQ & CDR & lane0 digital)
+//   EBh(terminal):[7]:En 50ohm_CK;[6]:En 50ohm_Ln2_Data;[5]:En 50ohm_Ln1_Data;[4]:En Cmn_Mode_Imp_Ln0_Data;[3]:En_Diff_Imp_Ln0_Data;[2]:En_Zrxsense_term_Ln0_Data;[1]:En_Auto_Imp_matching_circuit;[0]:En 24.576MHz_crystal_Clk
+D:00F0:42F9_2000
+D:00F4:0096_4A44
+// Step 3(enter standby mode)
+D:006C:0000_0100
+// Step 4 :STB_AREG0 (EAh/F1h)= A0  (enable TMDS CK path)
+D:00F0:42F9_A000
+
+
+// AIP_DeepColor
+D:0020:0000_0C80
+// Step 1
+D:003C:0000_0000
+// Step 2
+D:003C:0000_0001
+// Step 3
+D:0020:8703_0C80
+D:0024:0018_B06A
+D:0028:4008_0008
+D:002C:1958_8008
+D:0030:0000_0000
+D:0034:8000_0000
+D:0038:0000_0000
+// Step 4
+D:0020:8743_0D80
+// Step 5
+D:0020:8763_0D80
+D:002C:19D8_8008
+// Step 6
+D:0020:8743_0D80
+D:002C:1958_8008
+
+
+// Audio PLL
+// Step 1
+D:0040:0000_0003
+//.. Audio Pll set 47h[1:0]:00=TMDS_CK;01=XTAL_CK;10=BIST_CK;11=EXT_CK
+//..  HDMI = 00h ; MHL = 03h 
+D:0044:0300_0000
+D:0048:0201_0802
+D:004C:0400_0002
+// Step 2
+D:004C:0400_0102
+// Step 3
+D:004C:0500_0102
+// Step 5
+D:004C:0700_0102
+
+
+
+
+
+// HDMI
+D:FFFF:0000_0008
+D:FFFF:0000_0008
+D:0000:0020_1F00
+D:0004:FFFF_0000
+D:0008:0000_0312
+D:00C0:0000_0020
+//** audio setting
+D:0014:00C4_0000
+D:0024:3EB0_50CF
+D:00E4:2100_0000 

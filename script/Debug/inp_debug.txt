@@ -1,0 +1,120 @@
+D:FFFF:0000_0001
+D:0080:0000_0010  // inp debug
+// 0: (vbotx_dbg0_o[10:0]   ),
+// 1: (vbotx_dbg1_o[10:0]   ),
+// 2: ({9'b0,vbotx_training_rdy1_o,vbotx_training_rdy0_o}),
+// 3: (dbg_out_backend[10:0]),
+// 4: (dbg_out_asic_c[10:0] ),
+// 5: ({3'b0,dbl_apwm[7:0]} ),
+// 6: (dbg_out_pb2axi[12:2] ),
+// 7: (dbg_out_pb2axi[10:0] ),
+// 8: (dbg_out_frc[10:0]    ),
+// 9: (dbg_out_asic_b[10:0] ),
+// a: (aud2dbg_data[15:5]   ),
+// b: (aud2dbg_data[10:0]   ),
+// c: (stb_dbg_out[11:1]    ),
+// d: (stb_dbg_out[10:0]    ),
+// e: (hdmi_dbg[11:1]       ),
+// f: (hdmi_dbg[10:0]       ),
+// 10:(dbg_out_inp[10:0]    ),
+
+
+D:FFFF:0000_0014
+D:0004:0000_0001
+// dbg_sel==8'h00: {7'b0, clk_s, clk_pix, clk_pix_div2, clk_o} :
+// dbg_sel==8'h01: {pi0[32:30], pi0[29:22]} :
+// dbg_sel==8'h02: {pi0[32:30], pi0[19:12]} :
+// dbg_sel==8'h03: {pi0[32:30], pi0[9:2]} :
+// dbg_sel==8'h04: {pi_a_det_i[32:30], pi_a_det_i[9:2]} :
+// dbg_sel==8'h05: {pi_a_det_i[32:30], pi_a_det_i[29:22]} :
+// dbg_sel==8'h06: {pi_a_det_i[32:30], pi_a_det_i[19:12]} :
+// dbg_sel==8'h07: {po_gp0[32:30], po_gp0[9:2]} :
+// dbg_sel==8'h08: {po_gp0[32:30], po_gp0[29:22]} :
+// dbg_sel==8'h09: {po_gp0[32:30], po_gp0[19:12]} :
+// dbg_sel==8'h0A: {po_ssc0[32:30], po_ssc0[9:2]}   :
+// dbg_sel==8'h0B: {po_ssc0[32:30], po_ssc0[19:12]} :
+// dbg_sel==8'h0C: {po_ssc0[32:30], po_ssc0[29:22]} :
+// dbg_sel==8'h0D: {po_ssc1[32:30], po_ssc1[9:2]}   :
+// dbg_sel==8'h0E: {po_ssc1[32:30], po_ssc1[19:12]} :
+// dbg_sel==8'h0F: {po_ssc1[32:30], po_ssc1[29:22]} :
+// dbg_sel==8'h10: {po_ssc2[32:30], po_ssc2[9:2]}   :
+// dbg_sel==8'h11: {po_ssc2[32:30], po_ssc2[19:12]} :
+// dbg_sel==8'h12: {po_ssc2[32:30], po_ssc2[29:22]} :
+// dbg_sel==8'h13: {po_ssc3[32:30], po_ssc3[9:2]}   :
+// dbg_sel==8'h14: {po_ssc3[32:30], po_ssc3[19:12]} :
+// dbg_sel==8'h15: {po_ssc3[32:30], po_ssc3[29:22]} :
+// dbg_sel==8'h16: {po_vshs_gen0[32:30], po_vshs_gen0[9:2]}   :
+// dbg_sel==8'h17: {po_vshs_gen0[32:30], po_vshs_gen0[19:12]} :
+// dbg_sel==8'h18: {po_vshs_gen0[32:30], po_vshs_gen0[29:22]} :
+// dbg_sel==8'h19: {po_vshs_gen0[32:30], po_vshs_gen1[9:2]}   :
+// dbg_sel==8'h1A: {po_vshs_gen0[32:30], po_vshs_gen1[19:12]} :
+// dbg_sel==8'h1B: {po_vshs_gen0[32:30], po_vshs_gen1[29:22]} :
+// dbg_sel==8'h1C: {po_vshs_gen0[32:30], po_vshs_gen2[9:2]}   :
+// dbg_sel==8'h1D: {po_vshs_gen0[32:30], po_vshs_gen2[19:12]} :
+// dbg_sel==8'h1E: {po_vshs_gen0[32:30], po_vshs_gen2[29:22]} :
+// dbg_sel==8'h1F: {po_vshs_gen0[32:30], po_vshs_gen3[9:2]}   :
+// dbg_sel==8'h20: {po_vshs_gen0[32:30], po_vshs_gen3[19:12]} :
+// dbg_sel==8'h21: {po_vshs_gen0[32:30], po_vshs_gen3[29:22]} :
+// dbg_sel==8'h22: {po_test_pat0[32:30], po_test_pat0[9:2]}   :
+// dbg_sel==8'h23: {po_test_pat0[32:30], po_test_pat0[19:12]} :
+// dbg_sel==8'h24: {po_test_pat0[32:30], po_test_pat0[29:22]} :
+// dbg_sel==8'h25: {po_test_pat1[32:30], po_test_pat1[9:2]}   :
+// dbg_sel==8'h26: {po_test_pat1[32:30], po_test_pat1[19:12]} :
+// dbg_sel==8'h27: {po_test_pat1[32:30], po_test_pat1[29:22]} :
+// dbg_sel==8'h28: {po_test_pat2[32:30], po_test_pat2[9:2]}   :
+// dbg_sel==8'h29: {po_test_pat2[32:30], po_test_pat2[19:12]} :
+// dbg_sel==8'h2A: {po_test_pat2[32:30], po_test_pat2[29:22]} :
+// dbg_sel==8'h2B: {po_test_pat3[32:30], po_test_pat3[9:2]}:
+// dbg_sel==8'h2C: {po_test_pat3[32:30], po_test_pat3[19:12]} :
+// dbg_sel==8'h2D: {po_test_pat3[32:30], po_test_pat3[29:22]} :
+// dbg_sel==8'h2E: {po_gp4[32:30], po_gp4[9:2]} :
+// dbg_sel==8'h2F: {po_gp4[32:30], po_gp4[29:22]} :
+// dbg_sel==8'h30: {po_gp4[32:30], po_gp4[19:12]} :
+// dbg_sel==8'h31: {po_fifo_0[32:30], po_fifo_0[9:2]}   :
+// dbg_sel==8'h32: {po_fifo_0[32:30], po_fifo_0[19:12]} :
+// dbg_sel==8'h33: {po_fifo_0[32:30], po_fifo_0[29:22]} :
+// dbg_sel==8'h34: {po_fifo_1[32:30], po_fifo_1[9:2]}   :
+// dbg_sel==8'h35: {po_fifo_1[32:30], po_fifo_1[19:12]} :
+// dbg_sel==8'h36: {po_fifo_1[32:30], po_fifo_1[29:22]} :
+// dbg_sel==8'h37: {po_fifo_2[32:30], po_fifo_2[9:2]}   :
+// dbg_sel==8'h38: {po_fifo_2[32:30], po_fifo_2[19:12]} :
+// dbg_sel==8'h39: {po_fifo_2[32:30], po_fifo_2[29:22]} :
+// dbg_sel==8'h3A: {po_fifo_3[32:30], po_fifo_3[9:2]}   :
+// dbg_sel==8'h3B: {po_fifo_3[32:30], po_fifo_3[19:12]} :
+// dbg_sel==8'h3C: {po_fifo_3[32:30], po_fifo_3[29:22]} :
+// dbg_sel==8'h3D: {po0[32], po0[31], po0[30], po0[9:2]  } :
+// dbg_sel==8'h3E: {po0[32], po0[31], po0[30], po0[19:12]} :
+// dbg_sel==8'h3F: {po0[32], po0[31], po0[30], po0[29:22]} :
+// dbg_sel==8'h40: {po1[32], po1[31], po1[30], po1[9:2]  } :
+// dbg_sel==8'h41: {po1[32], po1[31], po1[30], po1[19:12]} :
+// dbg_sel==8'h42: {po1[32], po1[31], po1[30], po1[29:22]} :
+// dbg_sel==8'h43: {po2[32], po2[31], po2[30], po2[9:2]  } :
+// dbg_sel==8'h44: {po2[32], po2[31], po2[30], po2[19:12]} :
+// dbg_sel==8'h45: {po2[32], po2[31], po2[30], po2[29:22]} :
+// dbg_sel==8'h46: {po3[32], po3[31], po3[30], po3[9:2]  } :
+// dbg_sel==8'h47: {po3[32], po3[31], po3[30], po3[19:12]} :
+// dbg_sel==8'h48: {po3[32], po3[31], po3[30], po3[29:22]} :
+// dbg_sel==8'h49: {dbg_out_tg_det[10:0]}  :
+// dbg_sel==8'h4A: {po0[32:30],po1[32:30],5'b0} :
+// dbg_sel==8'h4B: {po2[32:30],po3[32:30],5'b0} :
+// dbg_sel==8'h4C: {6'b0,clk_o,po_ssc3[32], po_ssc2[32], po_ssc1[32], po_ssc0[32]} :
+// dbg_sel==8'h4D: {6'b0,clk_o,po_ssc3[31], po_ssc2[31], po_ssc1[31], po_ssc0[31]} :
+// dbg_sel==8'h4E: {6'b0,clk_o,po_ssc3[30], po_ssc2[30], po_ssc1[30], po_ssc0[30]} :
+// dbg_sel==8'h4F: {6'b0,clk_o,po3[32], po2[32], po1[32], po0[32]} :
+// dbg_sel==8'h50: {6'b0,clk_o,po3[31], po2[31], po1[31], po0[31]} :
+// dbg_sel==8'h51: {6'b0,clk_o,po3[30], po2[30], po1[30], po0[30]} :
+// dbg_sel==8'h52: {9'b0,clk_pix,pi0[32]} :
+// dbg_sel==8'h53: {9'b0,clk_pix,pi0[31]} :
+// dbg_sel==8'h54: {9'b0,clk_pix,pi0[30]} :
+// dbg_sel==8'h55: {10'b0, de_fail} :
+// dbg_sel==8'h56: {8'b0, tp_apricot_sync_out[32:30]} : 
+// dbg_sel==8'h57: {1'b0, clk_s,i_req_mchg, int_req_mchg, int_req_pol, int_req_sync, int_req_denchg,sync_fail,inp_den_fail,inp_hs_fail,inp_vs_fail} : 
+// dbg_sel==8'h58: {1'b0, clk_s,i_req_mchg_o, int_req_mchg_o, int_req_pol_o, int_req_sync_o, int_req_denchg_o,sync_fail_o,inp_den_fail_o,inp_hs_fail_o,inp_vs_fail_o} : 
+// dbg_sel==8'h59: {pi0_swap[32], pi0_swap[31], pi0_swap[30], int_req_mchg, int_req_pol, int_req_sync, int_req_denchg,sync_fail,inp_den_fail,inp_hs_fail,inp_vs_fail} :
+// dbg_sel==8'h5A: {po0[32], po0[31], po0[30], int_req_mchg_o, int_req_pol_o, int_req_sync_o, int_req_denchg_o,sync_fail_o,inp_den_fail_o,inp_hs_fail_o,inp_vs_fail_o} :
+// dbg_sel==8'h5B: {5'b0,pi0_swap[32], pi0_swap[31], pi0_swap[30], i_req_pol, inp_hs_pol, inp_vs_pol} :
+// dbg_sel==8'h5C: {3'b0,de_interlace_flag,de_interlace_flag_o,po0[32], po0[31], po0[30], i_req_pol_o, inp_hs_pol_o, inp_vs_pol_o} :
+// dbg_sel==8'h5D: {3'b0,i_req_mchg, int_req_mchg,status_vs_chg_neg_wire,status_vs_chg_wire,status_ahs_chg_wire,vs_chg_neg,vs_chg,ahs_chg} :
+// dbg_sel==8'h5E: {3'b0,i_req_mchg_o, int_req_mchg_o,status_vs_chg_neg_o_wire,status_vs_chg_o_wire,status_ahs_chg_o_wire,vs_chg_neg_o,vs_chg_o,ahs_chg_o} :
+// dbg_sel==8'h5F: {pi0_swap[32], pi0_swap[31], pi0_swap[30],i_req_mchg, int_req_mchg,i_req_vs_chg_neg,vs_chg_neg,i_req_vs_chg,vs_chg,i_req_ahs_chg,ahs_chg} :
+// dbg_sel==8'h60: {po0[32], po0[31], po0[30],i_req_mchg_o, int_req_mchg_o,i_req_vs_chg_neg_o,vs_chg_neg_o,i_req_vs_chg_o,vs_chg_o,i_req_ahs_chg_o,ahs_chg_o} :

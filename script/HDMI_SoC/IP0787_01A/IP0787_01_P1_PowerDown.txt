@@ -1,0 +1,16 @@
+
+// use DEMUX I2C0
+DEMUX:0
+
+
+// use DEBUG I2C
+A:8001_0000:0000_0000
+
+
+//97.453125MHz
+
+//**** HDMI AIP P1 Power Down ****
+// Step 1 :(initial power down)
+// PowerDown_Mode (1D[1]/6D[1])=1 ; STANDBY_MODE (1D[0]/6D[0])=1
+D:006C:0000_0300
+

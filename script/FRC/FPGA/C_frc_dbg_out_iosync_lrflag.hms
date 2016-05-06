@@ -1,0 +1,22 @@
+
+
+// use DEMUX I2C0
+  DEMUX:0
+
+
+// use DEBUG I2C
+  A:8001_0000:0000_0000
+
+
+// misc bank
+  D:FFFF:0000_0001
+  D:0080:0000_0008
+
+
+// fc3d bank
+  D:FFFF:0000_000F
+  D:008C:0000_001A  // {4'h0, pi_frdc0[32:30], po_frdc_0[32:30], po_l_flag}
+
+
+
+

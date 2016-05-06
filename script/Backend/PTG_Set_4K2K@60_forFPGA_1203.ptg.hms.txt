@@ -1,0 +1,48 @@
+FF:00
+
+01:01     // DDR 8G
+
+04:00     // hscroll mode
+05:06     // vscroll
+06:06     // hscroll
+07:01     // fw_en
+08:01     // fw_user_en
+09:00,00  // fw_user_idx
+0B:01     // fr_en
+0C:01     // fr_user_en 
+0D:00,00  // fr_user_idx
+
+20:80,07  // hsize  = 3840 / 2
+22:70,08  // vsize  = 2160
+24:98,08  // htotal = 4400 / 2
+26:CA,08  // vtotal = 2250
+28:C0,00  // hstart = 384 / 2
+2A:52,00  // vstart = 82
+2C:2C,00  // hsync  = 88 / 2
+2E:0A,00  // vsync  = 10
+
+40:02           // 4k2k@120 8-lanes mode
+41:80,07        // hsize = 3840 / 2
+43:70,08        // vsize = 2160
+45:F0,00        // lsize = 3840 / 16 = 240
+47:00,E9,07,00  // fsize = lsize * 2160 = 0x7E900 (518400d)
+
+60:00,04,01,05  // left
+64:00,01,02,03  // unused
+68:02,06,03,07  // right
+6C:04,05,06,07  // unused
+
+
+//70:00
+72:0F
+70:0F
+
+AB:20
+
+F0:71  // debug_ctrl
+
+50:01
+51:00
+51:01
+
+

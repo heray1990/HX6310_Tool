@@ -1,0 +1,9 @@
+
+  //
+  // enable the eo2fb after FRC
+  //
+  D:FFFF:0000_0000
+  D:0018:0000_0000  // [0]  bypass eo2fb = 0
+  D:00A8:0000_0000  // [15] eo2fb enable = 0
+
+

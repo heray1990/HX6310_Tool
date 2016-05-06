@@ -1,0 +1,77 @@
+D:FFFF:0000_0001
+D:0080:0000_0009  // asic_b debug
+// 0: (vbotx_dbg0_o[10:0]   ),
+// 1: (vbotx_dbg1_o[10:0]   ),
+// 2: ({9'b0,vbotx_training_rdy1_o,vbotx_training_rdy0_o}),
+// 3: (dbg_out_backend[10:0]),
+// 4: (dbg_out_asic_c[10:0] ),
+// 5: ({3'b0,dbl_apwm[7:0]} ),
+// 6: (dbg_out_pb2axi[12:2] ),
+// 7: (dbg_out_pb2axi[10:0] ),
+// 8: (dbg_out_frc[10:0]    ),
+// 9: (dbg_out_asic_b[10:0] ),
+// a: (aud2dbg_data[15:5]   ),
+// b: (aud2dbg_data[10:0]   ),
+// c: (stb_dbg_out[11:1]    ),
+// d: (stb_dbg_out[10:0]    ),
+// e: (hdmi_dbg[11:1]       ),
+// f: (hdmi_dbg[10:0]       ),
+// 10:(dbg_out:p[10:0]    ),
+
+
+D:FFFF:0000_0010
+D:0060:0000_001E  // select dbg_bus_1E [10:0] = {1'h0,asic_b_po0[32:30],asic_b_po0[21:20],asic_b_po0[11:10],asic_b_po0[1:0],clk_o}   ;
+// assign dbg_bus_00 [10:0] = {i1_pi0[33:30],i1_pi0[21:20],i1_pi0[11:10],i1_pi0[1:0],clk_i}   ;
+// assign dbg_bus_01 [10:0] = {i1_pi1[33:30],i1_pi1[21:20],i1_pi1[11:10],i1_pi1[1:0],clk_i}   ;
+// assign dbg_bus_02 [10:0] = {i1_pi2[33:30],i1_pi2[21:20],i1_pi2[11:10],i1_pi2[1:0],clk_i}   ;
+// assign dbg_bus_03 [10:0] = {i1_pi3[33:30],i1_pi3[21:20],i1_pi3[11:10],i1_pi3[1:0],clk_i}   ;
+// assign dbg_bus_04 [10:0] = {p1_pi0[33:30],p1_pi0[21:20],p1_pi0[11:10],p1_pi0[1:0],clk_i}   ;
+// assign dbg_bus_05 [10:0] = {p1_pi1[33:30],p1_pi1[21:20],p1_pi1[11:10],p1_pi1[1:0],clk_i}   ;
+// assign dbg_bus_06 [10:0] = {p1_pi2[33:30],p1_pi2[21:20],p1_pi2[11:10],p1_pi2[1:0],clk_i}   ;
+// assign dbg_bus_07 [10:0] = {p1_pi3[33:30],p1_pi3[21:20],p1_pi3[11:10],p1_pi3[1:0],clk_i}   ;
+// assign dbg_bus_08 [10:0] = {gp1_pi[33:30],gp1_pi[21:20],gp1_pi[11:10],gp1_pi[1:0],clk_i}   ;
+// assign dbg_bus_09 [10:0] = {dispmask_pi[33:30],dispmask_pi[21:20],dispmask_pi[11:10],dispmask_pi[1:0],clk_i};
+// assign dbg_bus_0A [10:0] = {nrdi3d_pi[33:30],nrdi3d_pi[21:20],nrdi3d_pi[11:10],nrdi3d_pi[1:0],clk_i}//    ;
+// assign dbg_bus_0B [10:0] = {po_nrdi1[32:30],// // po_nrdi1[22:20],po_nrdi1[11:10],po_nrdi1[1:0],clk_i}  ;
+// assign dbg_bus_0C [10:0] = {po_nrdi2[32:30],de:t_en,po_nrdi2[21:20],po_nrdi2[11:10],po_nrdi2[1:0],clk_i}  ;
+// assign dbg_bus_0D [10:0] = {1'h0,sc_pi1[32:30],sc_pi1[21:20],sc_pi1[11:10],sc_pi1[1:0],clk_i};
+// assign dbg_bus_0E [10:0] = {1'h0,sc_pi2[32:30],sc_pi2[21:20],sc_pi2[11:10],sc_pi2[1:0],clk_i};
+// assign dbg_bus_0F [10:0] = {sc_pi1[32:30],po_sc[26:24] ,sc_pi1[ 1: 0],sc_pi2[  0],po_sc[1:0]};
+// assign dbg_bus_10 [10:0] = {1'h0,yuv2rgb_pi0[32:30],yuv2rgb_pi0[21:20],yuv2rgb_pi0[11:10],yuv2rgb_pi0[1:0],clk_o};
+// assign dbg_bus_11 [10:0] = {1'h0,yuv2rgb_pi1[32:30],yuv2rgb_pi1[21:20],yuv2rgb_pi1[11:10],yuv2rgb_pi1[1:0],clk_o};
+// assign dbg_bus_12 [10:0] = {1'h0,yuv2rgb_pi2[32:30],yuv2rgb_pi2[21:20],yuv2rgb_pi2[11:10],yuv2rgb_pi2[1:0],clk_o};
+// assign dbg_bus_13 [10:0] = {1'h0,yuv2rgb_pi3[32:30],yuv2rgb_pi3[21:20],yuv2rgb_pi3[11:10],yuv2rgb_pi3[1:0],clk_o};
+// assign dbg_bus_14 [10:0] = {to422_pi[33:30],to422_pi[21:20],to422_pi[11:10],to422_pi[1:0],clk_i_g4_nr}// ;
+// assign dbg_bus_15 [10:0] = {to422_po[33:30],to422_po[21:20],to422_po[11:10],to422_po[1:0],clk_i_g4_nr}// ;
+// assign dbg_bus_16 [10:0] = {to444_pi0[33:30],to444_pi0[21:20],to444_pi0[11:10],to444_pi0[1:0],clk_i_g4_nr} ;
+// assign dbg_bus_17 [10:0] = {to444_pi1[33:30],to444_pi1[21:20],to444_pi1[11:10],to444_pi1[1:0],clk_i_g4_nr} ;
+// assign dbg_bus_18 [10:0] = {to444_po0[33:30],to444_po0[21:20],to444_po0[11:10],to444_po0[1:0],clk_i_g4_nr} ;
+// assign dbg_bus_19 [10:0] = {to444_po1[33:30],to444_po1[21:20],to444_po1[11:10],to444_po1[1:0],clk_i_g4_nr} ;
+// assign dbg_bus_1A [10:0] = {1'h0,gp2_pi0[32:30],gp2_pi0[21:20],gp2_pi0[11:10],gp2_pi0[1:0],clk_o}// // ;
+// assign dbg_bus_1B [10:0] = {1'h0,gp2_pi1[32:30],gp2_pi1[21:20],gp2_pi1[11:10],gp2_pi1[1:0],clk_o}// // ;
+// assign dbg_bus_1C [10:0] = {1'h0,gp2_pi2[32:30],gp2_pi2[21:20],gp2_pi2[11:10],gp2_pi2[1:0],clk_o}// // ;
+// assign dbg_bus_1D [10:0] = {1'h0,gp2_pi3[32:30],gp2_pi3[21:20],gp2_pi3[11:10],gp2_pi3[1:0],clk_o}// // ;
+// assign dbg_bus_1E [10:0] = {1'h0,asic_b_po0[32:30],asic_b_po0[21:20],asic_b_po0[11:10],asic_b_po0[1:0],clk_o}   ;
+// assign dbg_bus_1F [10:0] = {1'h0,asic_b_po1[32:30],asic_b_po1[21:20],asic_b_po1[11:10],asic_b_po1[1:0],clk_o}   ;
+// assign dbg_bus_20 [10:0] = {1'h0,asic_b_po2[32:30],asic_b_po2[21:20],asic_b_po2[11:10],asic_b_po2[1:0],clk_o}   ;
+// assign dbg_bus_21 [10:0] = {1'h0,asic_b_po3[32:30],asic_b_po3[21:20],asic_b_po3[11:10],asic_b_po3[1:0],clk_o}   ;
+// assign dbg_bus_22 [10:0] = {seq_req,seq_wr,seq_last,seq_addr[1:0],seq_aiid[1:0],seq_di[1:0],seq_dqm[1:0]};
+// assign dbg_bus_23 [10:0] = {seq_do[3:0],seq_doen,seq_doid[4:0],seq_ensp};
+// assign dbg_bus_24 [10:0] = {ensp,wr_cyc,wr_req_to_arb,wr_req_last,wr_req_data[2:0],wr_req_addr[3:0]};
+// assign dbg_bus_25 [10:0] = {rd_cyc,rd_req_to_arb,rd_req_last,rd_req_addr[2:0],rd_rdy,rd_rdata[3:0]};
+// assign dbg_bus_26 [10:0] = {dn_rd_ode0,dn_rd_ode1,dn_rd_odt0[1:0],dn_rd_odt1[1:0],dn_rd_req0,dn_rd_req1,dn_wt_ide,dn_wt_idt[1:0]};
+// assign dbg_bus_27 [10:0] = {3'h0,int_req_den_chg,int_req_sync_fail,int_req_pol_chg,int_req_mode_chg,sc_int,int_req_nrdi_sif_of,int_req_nrdi_ofi0_uf,int_req_nrdi_ofi1_uf};
+// assign dbg_bus_28 [10:0] = {mcore_dbg_out};
+// assign dbg_bus_29 [10:0] = {ensp,wr_cyc,wr_req_to_arb,wr_req_last,wr_req_addr[0],rd_cyc,rd_req_to_arb,rd_req_last,rd_req_addr[0],rd_rdy,rd_rdata[0]};
+// assign dbg_bus_2A [10:0] = {ensp,wr_cyc,wr_req_to_arb,wr_req_last,wr_req_data[2:0],wr_req_addr[3:0]};
+// assign dbg_bus_2B [10:0] = {ensp,rd_cyc,rd_req_to_arb,rd_req_last,rd_req_addr[2:0],rd_rdy,rd_rdata[2:0]};
+// assign dbg_bus_2C [10:0] = {sc_dbl_wr,cs_yuv,de_int_en,sub_sync_sc[26:24],po_sc[26:24],po_nrdi1[32],po_nrdi1[30]};
+// assign dbg_bus_2D [10:0] = {sc_dbl_wr,cs_yuv,timing_change,sc_int,reset_inc[3:0],reset_auto_en,ov_flag,un_flag};
+// assign dbg_bus_2E [10:0] = {m_protect,reg_en_show_bkgrnd_atSyncFail,en_freerun,reg_en_Main_Video,en_tg_mask,po_nrdi1[32],p1_pi0[33],out_sync[26:24]};
+// assign dbg_bus_2F [10:0] = {clk_o_g3,en_tg_mask,out_sync[26:24],bk_sync[26],bk_sync[24],sub_sync_out[26],sub_sync_out[24],sub_sync_sc[26],sub_sync_sc[24]};
+// assign dbg_bus_30 [10:0] = {1'h0,reg_en_display_mixer_atSyncFail,m_protect,sub_sync_out[26],sub_sync_out[24],po_sc[26],po_sc[24],bk_sync[26],bk_sync[24],po_mixer[26],po_mixer[24]};
+// assign dbg_bus_31 [10:0] = {po_mixer[26:24],po_mixer[18:16],po_mixer[10:8],po_mixer[1:0]};
+// assign dbg_bus_32 [10:0] = {asic_b_po3[32:30],asic_b_po3[21:20],asic_b_po3[11:10],asic_b_po3[1:0],clk_i};
+// assign dbg_bus_33 [10:0] = {clk_s,clk_s_g0,clk_s_g1,clk_s_g2,clk_s_g3,clk_s_g4,clk_s_g5,clk_s_g6,clk_s_g7,clk_s_g8,clk_s_g9};
+// assign dbg_bus_34 [10:0] = {clk_s_g10,clk_s_g11,clk_s_g12,clk_i,clk_i_g0,clk_i_g1,clk_i_g2,clk_i_g3,clk_i_g4_nr,clk_i_g5_di,clk_i_g6};
+// assign dbg_bus_35 [10:0] = {clk_o,clk_o_g0_sc,clk_o_g1,clk_o_g2,clk_o_g3,clk_o_g4,clk_o_g5,clk_o_g6,clk_o_g7,clk_o_g8,1'h0};

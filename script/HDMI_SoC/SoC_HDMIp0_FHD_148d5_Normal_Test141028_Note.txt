@@ -1,0 +1,23 @@
+SoC_HDMIp0_FHD_148d5_Normal_Test141028.txt :
+
+01h=B7 -> B5 (offset cancel 1 -> 0)
+10h=04 -> 80 (OFS[7:0])
+
+
+
+1Bh[3]=1 (CDR_BAND_SEL manual)
+1Bh[5:4]=00 (Low BAND)
+
+14h=55 (VCO bias = 120%; Freq_Trim = 50)
+
+
+0Ch=4A -> 6A (Manual Freq.trim code value)(manual use)
+
+03h=00 -> 11 (Force GVCO input = DC)(manual use)
+15h[7]=1 (FD_SEL = Master GVCO)(manual use)
+ECh[6]=1 -> 0 (turn off clk det)(manual use)
+
+//For 6G use
+16h=00 -> B0 (CDR Freq sel change to HDMI2.0)
+1Bh=0A -> 3A (CDR Band sel high Band)
+06h=c1 -> B1

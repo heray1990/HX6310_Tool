@@ -1,0 +1,49 @@
+D:FFFF:0000_0001
+D:0080:0000_000f
+// 0: (vbotx_dbg0_o[10:0]   ),
+// 1: (vbotx_dbg1_o[10:0]   ),
+// 2: ({9'b0,vbotx_training_rdy1_o,vbotx_training_rdy0_o}),
+// 3: (dbg_out_backend[10:0]),
+// 4: (dbg_out_asic_c[10:0] ),
+// 5: ({3'b0,dbl_apwm[7:0]} ),
+// 6: (dbg_out_pb2axi[12:2] ),
+// 7: (dbg_out_pb2axi[10:0] ),
+// 8: (dbg_out_frc[10:0]    ),
+// 9: (dbg_out_asic_b[10:0] ),
+// a: (aud2dbg_data[15:5]   ),
+// b: (aud2dbg_data[10:0]   ),
+// c: (stb_dbg_out[11:1]    ),
+// d: (stb_dbg_out[10:0]    ),
+// e: (hdmi_dbg[11:1]       ),
+// f: (hdmi_dbg[10:0]       ),
+// 10:(dbg_out_inp[10:0]    ),
+
+
+D:FFFF:0000_0008
+D:00A0:1080_0100
+//            ^ A0[7:4] = debug sel
+// 4'h0 : hdmi_dbg[11:0] = hdmidebug[11:0];
+// 4'h1 : hdmi_dbg[11:0] = {clk_bypass_ch0, p0_det_clk, rx0_ckout_ch0, 1'b0, rx0_dout_ch0[7:0]};
+// 4'h2 : hdmi_dbg[11:0] = {clk_bypass_ch0, 1'b0, rx1_ckout_ch0, 1'b0, rx1_dout_ch0[7:0]};
+// 4'h3 : hdmi_dbg[11:0] = {clk_bypass_ch0, 1'b0, rx2_ckout_ch0, 1'b0, rx2_dout_ch0[7:0]};
+// 4'h4 : hdmi_dbg[11:0] = {4'b0,aipdbgdyn0[7:0]};
+// 4'h5 : hdmi_dbg[11:0] = {4'b0,aipdbgdyn1[7:0]};
+// 4'h6 : hdmi_dbg[11:0] = {4'b0,aipdbgdyn0_stb[7:0]};
+// 4'h7 : hdmi_dbg[11:0] = {2'b0,prbs_i0[9:0]};
+// 4'h8 : hdmi_dbg[11:0] = {2'b0,prbs_i1[9:0]};
+// 4'h9 : hdmi_dbg[11:0] = {2'b0,prbs_i2[9:0]};
+// 4'hD : hdmi_dbg[11:0] = {1'b0, dpll_ckout, 1'b1, dpll_ckin0, 1'b0, apll_fs_ckout, 1'b0, p0_det_clk,  p1_det_clk, apll_xtal_ckin, 1'b0, apll_ref_ckin};
+// 4'hE : hdmi_dbg[11:0] = {apll_ref_ckin, apll_xtal_ckin, apll_fs_ckout, 1'b0,apll_dbg[7:0]};
+// 4'hF : hdmi_dbg[11:0] = cbus_dbg_o;
+
+D:FFFF:0000_0008
+D:00A8:0081_8200
+//           ^ A9[2:0] = debug sel
+// 3'b000: hdmidebug[11:0] = digi_debug[11: 0];
+// 3'b001: hdmidebug[11:0] = digi_debug[23:12];
+// 3'b010: hdmidebug[11:0] = {hdcpvd_de, hdcp_hsync, hdcp_vsync, syncvd_de, sync_hsync, sync_vsync, digi_debug[29:24]};
+// 3'b011: hdmidebug[11:0] = {digi_debug[41:30]};
+// 3'b100: hdmidebug[11:0] = {vdf_dbg_dat[4:0], pix_fifo_err, vdf_fifo_radr[1:0], fifo_rs, vdf_fifo_err, vdf_fifo_wadr[1:0]};
+// 3'b101: hdmidebug[11:0] = {2'b0, 2'b1, sync_vsync, sync_hsync, syncpkt_de, syncvd_de, v_gli_flag_p, v_gli_flag_n, 2'b0};
+// 3'b110: hdmidebug[11:0] = {2'b0, prbs_i1[9:0]};
+// 3'b111: hdmidebug[11:0] = {2'b0, prbs_i2[9:0]};

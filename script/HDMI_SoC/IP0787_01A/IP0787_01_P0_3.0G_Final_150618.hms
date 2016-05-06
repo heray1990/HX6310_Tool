@@ -1,0 +1,147 @@
+
+// use DEMUX I2C0
+DEMUX:0
+
+
+// use DEBUG I2C
+A:8001_0000:0000_0000
+
+
+//97.453125MHz
+
+//**** HDMI AIP P0 Normal ****
+D:FFFF:0000_0009
+// Step 1 :(initial power down)
+// PowerDown_Mode (1D[1]/6D[1])=1 ; STANDBY_MODE (1D[0]/6D[0])=1
+D:001C:0000_0300
+// Step 2 :(inital value)
+// EAh(en clk):[7]:En HDMI_ClkPath;[6:5]:LDO voltage of one Lane(0=1.4V;1=1.35V;2=1.3V;3=1.25V;4=1.2V;5=1.15V;6=1.1V;7=1.05V);[3]:En MHL_ClkPath;[2]:En Ln2_LDO(EQ & CDR);[1]:En Ln1_LDO(EQ & CDR & Ln1/2 digital);[0]:En Ln0 LDO(EQ & CDR & lane0 digital)
+// EBh(terminal):[7]:En 50ohm_CK;[6]:En 50ohm_Ln2_Data;[5]:En 50ohm_Ln1_Data;[4]:En Cmn_Mode_Imp_Ln0_Data;[3]:En_Diff_Imp_Ln0_Data;[2]:En_Zrxsense_term_Ln0_Data;[1]:En_Auto_Imp_matching_circuit;[0]:En 24.576MHz_crystal_Clk
+D:00E8:F920_0000
+D:00EC:4A00_4422
+D:00F0:0000_0096
+// 00h:[6]:Auto_EQ_Sel(0=over data 1.4Gbps(def)/1=2Gbps);[5]: force EQ not manual(0=not force(def)/1=force);[4]: force EQ manual(0=not force(def)/1=force);[0]:EQ_EN(0=dis/1=en)
+// Manual EQ: 00h=11 ; Auto EQ: 00h=01
+// 01h=D0 -> F0
+D:0000:8062_1011
+D:0004:AB40_5800
+//..   09h:[7]:manual MUX_EN enable EQ adaptive function MUX(0=dis/1=en);[6]: manual MUX_SEL(0=choose linear EQ(def)/1=choose serializer);[4:0]: EQ_PEAK_INI_CODE[4:0] for EQ peaking counter
+//..   0Ah(Under1.4G=55h/Under3.4G=55h/Over3.4G=4E):[7:6]: EQ slicer IP[1:0](0=80%/1=100%(def)/2=120%/3=140%);[5:0]: MAN_PEAK[5:0], manually control linear EQ peaking
+//..   0Bh:MAN_AGC[7:0]: manual AGC_BIT[7:0]
+// modify 0Ah[7:6]=01 -> 10
+D:0008:9000_1088
+//..   0Ch:[7:5]: EQ adaptive MUX current bias[2:0](0=80uA/1=160uA/2=240uA/3=320uA(def)/4=400uA/5=480uA/6=560uA/7=640uA)
+//..   0Dh:[7]: enable CDR;[6]: reset CDR
+//..   0Eh:[7:6]:CDR_InClk_Sel(0=TMDS_CKOUT/1=MHL_CKOUT/2=EBUS_SCKIN/3=XTAL_CKIN);[5]:OSC_MODE;[4]:SEL_DATA10(0=Sel_20-bit data in CDR block/1=10 bit);[3:2]: CDR SEL_LOCK[1:0] choose lock range;[1]:SPEED_SEL behind CDR_Clk(0=10-bit output/1=20-bit);[0]:EN_VCOCLKO
+D:000C:9C3F_C060
+//..   Under 1.4Gbps/Under 3.4Gbps/Over 3.4Gbps difference setting
+//..   0Ah(Under1.4G=55h/Under3.4G=55h/Over3.4G=4E):
+//..   10h=3A and 11h=61
+//..   12h(Under1.4G=05h/Under3.4G=05h/3.4G=14):
+//..   13h(Under1.4G=64h/Under3.4G=64h/3.4G=6C):
+//
+//..   15h:PRBSDET function
+D:0014:0000_C000
+D:0018:0220_E522
+//..   1Ch:[7]: select data rate range for Linear EQ low bound;[6:4]: set Linear EQ low bound with meeting [7](0=0/1=2/2=4(def)/3=6/4=8/5=10/6=12/7=14)
+//..     [2]: lane2 ALL_RSTN: reset EQ & CDR;[1]: lane1 ALL_RSTN: reset EQ & CDR;[0]: lane0 ALL_RSTN: reset EQ & CDR
+D:001C:0000_0020
+// Step 3(enter standby mode)
+D:001C:0000_0120
+// Step 4 :(enable TMDS ck path)STB_AREG0 (EAh/F1h)= A0  (enable TMDS CK path)
+D:00E8:F9A0_0000
+
+//**** HDMI AIP P1 Standby Start****
+// Step 1 :(initial power down)
+// PowerDown_Mode (1D[1]/6D[1])=1 ; STANDBY_MODE (1D[0]/6D[0])=1
+D:006C:0000_0300
+// Step 2 :(inital value)
+//   EAh(en clk):[7]:En HDMI_ClkPath;[6:5]:LDO voltage of one Lane(0=1.4V;1=1.35V;2=1.3V;3=1.25V;4=1.2V;5=1.15V;6=1.1V;7=1.05V);[3]:En MHL_ClkPath;[2]:En Ln2_LDO(EQ & CDR);[1]:En Ln1_LDO(EQ & CDR & Ln1/2 digital);[0]:En Ln0 LDO(EQ & CDR & lane0 digital)
+//   EBh(terminal):[7]:En 50ohm_CK;[6]:En 50ohm_Ln2_Data;[5]:En 50ohm_Ln1_Data;[4]:En Cmn_Mode_Imp_Ln0_Data;[3]:En_Diff_Imp_Ln0_Data;[2]:En_Zrxsense_term_Ln0_Data;[1]:En_Auto_Imp_matching_circuit;[0]:En 24.576MHz_crystal_Clk
+D:00F0:42F9_2096
+D:00F4:0096_4A44
+// Step 3(enter standby mode)
+D:006C:0000_0100
+// Step 4 :STB_AREG0 (EAh/F1h)= A0  (enable TMDS CK path)
+D:00F0:42F9_A096
+//**** HDMI AIP P1 Standby End****
+
+// Step 6 :(HDMI_AIP_AutoFreq) For 6G setting
+//D:00EC:4A00_5422
+//D:0008:90CE_1088
+//D:000C:DC3F_C060
+D:0010:6405_613A
+D:00E8:F9A7_0000
+// Step 7 :(enter normal mode)
+//   1Ch:[7]:Sel_Data_Rate_Range for Linear EQ low bound;[6:4]:Set_Linear EQ low bound with meeting [7];[2]:Ln2 ALL_RSTN(rst EQ & CDR);[1]:Ln1 ALL_RSTN;[0]:Ln0 ALL_RSTN
+D:001C:0000_0020
+// Step 8 :STB_AREG0 (EAh/F1h)=A7 (enable lane2/1/0 LDO)
+//D:00E8:F9A7_0000
+// Step 9 :STB_AREG2 (ECh/F3h)=C2 (reset logic)
+D:00EC:4A00_44A2
+// Step 10 :AREG28 (1Ch/6Ch)=27 (reset lane2/1/0)
+D:001C:0000_0027
+// Step 15 :AREG21 (15h/65h)=08 (PRBS detect enable)
+D:0014:0000_C800
+// Step 10 :AREG21 (15h/65h)=0F (PRBS detect start)
+D:0014:0000_CF00
+
+// AGC_Enable:01h/51h[6]
+D:0000:8062_5011
+// LATCH_RSTN =1 :06h/56h[7]
+D:0004:ABC0_5800
+
+
+// AIP_DeepColor
+D:0020:0000_0C80
+// Step 1
+D:003C:0000_0000
+// Step 2
+D:003C:0000_0001
+// Step 3
+D:0020:8703_0C80
+D:0024:0018_B06A
+D:0028:4008_0008
+D:002C:1958_8008
+D:0030:0000_0000
+D:0034:8000_0000
+D:0038:0000_0000
+// Step 4
+D:0020:8743_0D80
+// Step 5
+D:0020:8763_0D80
+D:002C:19D8_8008
+// Step 6
+D:0020:8743_0D80
+D:002C:1958_8008
+
+// Audio PLL
+// Step 1
+D:0040:0000_0003
+//.. Audio Pll set 47h[1:0]:00=TMDS_CK;01=XTAL_CK;10=BIST_CK;11=EXT_CK
+//..  HDMI = 00h ; MHL = 03h 
+D:0044:0000_0000
+D:0048:0201_0802
+D:004C:0400_0002
+// Step 2
+D:004C:0400_0102
+// Step 3
+D:004C:0500_0102
+// Step 5
+D:004C:0700_0102
+
+
+// HDMI
+D:FFFF:0000_0008
+D:FFFF:0000_0008
+D:0000:0020_1F00
+D:0004:FFFF_0000
+D:0008:0000_0312
+D:00C0:0000_0020
+//** audio setting
+D:0014:00C4_0000
+D:0024:3EB0_50CF
+D:00E4:2100_0000 
+
+
+

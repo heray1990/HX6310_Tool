@@ -1,0 +1,135 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+//  Project : PA8310 (4K Bridge HDMI2.0 to VBO) AIP : Test Chip=IP0670 ; DIP HDMI2.0=IP0756.
+//  Note    : HDMI2.0 DIP ready not yet so use HDMI1.4 verification
+//
+//                                      AIP:MC(翁盟智) DIP:SY(黃斯榆) SE:wchin(王文欽)
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//**************************************************************************************************
+//**                HDMI 1.4 DIP Setting                                                         ***
+//**************************************************************************************************
+
+ID:F4        //Device ID 
+FFFF:08,00,00,00      //Bank for I2C use
+
+0004:00,00,FF,FF
+
+0008:89,01,00,00
+
+//0006:FF,FF,89,01        //If 06h=00 HDMI reset
+
+//0007:FF        //=FF all power ON; =00 all power off
+
+//0008:89        //09h&08h[12:0]:16us counter 視 system clock 而調整數字.FPGA 給 25MHz 09h&08h[12:0]=189 if 50MHz =312
+//0009:01        //R only TMDS frequency.
+
+0010:FF,FF,00,00        //Interrupt mask0 搭配 R12h interrup flag
+//0011:FF        //Interrupt mask1 搭配 R13h interrup flag
+
+00BC:00,00,F0,00
+//00BE:F0        // in fifo ctl
+
+0078:C3,00,00,00        // [7]:Enable auto reset PHY. [6:5]:sel reset length. [3:0]:sel reset frequency(base on 5Ch FIFO error counter)
+
+00A4:00,00,40,00
+//00A6:40        //[6]:1=take B3h as real CD and PP value.
+
+00B0:00,00,01,00
+//00B2:01        //[0]:1=clear HDCP authentication every clock detect.
+
+0054:00,00,83,00
+//0056:83        //[7]:HDMI capability. 1=HDMI device. [1]:1.1_Features. [0]:Fast_Reauthentication(重新驗證).
+
+0060:4F,00,00,00
+//IP0019C without this function , all from PLL CLOCK
+//Bit6=1: select pll output TMDS clock for clock detect(Normal mode use) 60h=4F
+//BIt6=0: select bypass clock (For Power Saving mode use) 60h=0F
+
+00C0:20,00,00,00        //Select DIP Port (fixed)
+
+//****** Audio setting 
+//********************    
+
+//16:C8        //APLL ctl.[1:0]:(00=256*fs;01=reserved;10=512*fs;11=128*fs)in FPGA not use.
+
+0024:DF,00,00,0E
+//0027:0E        //[7]:clear Audio buffer.[6]:SW Audio mute(1=En).[5:4]:debug sel.[3]analog clk in inversion(1=falling;0=rising).
+             //[2]:HDMI video out clk inversion(1=falling;0=rising).[1]:Video mute Enable.  
+
+//0024:DF        //[7]:Insert repeat sample.[6]:Audio buffer enable.[5]:Force Audio output.[4]:I2S Bus format(1=general;0=MSB-JUSTIFIED).
+             //[3]:I2S BCLK output Invert.[2]:1=let 5Ah Pkt_err_cnt accumulated;0=reset to 0 at every frame.
+             //[1]:ADCLKOUT output enable.[0]:S/PDIF PAD Output enable.
+
+00E0:1C,05,A5,56        //
+
+//00E1:05        //
+
+//00E2:A5        //
+
+//00E3:56        //
+
+00EC:53,07,20,00        //
+00EC:53,07,20,07        //
+//00ED:07        //
+
+//00EE:20        //
+
+//00F0:00        //APLL Reset:[2]:Reset DIP(digital block of APLL). [1]:Reset AIP(analog block of APLL). [0]:Power down APLL
+//00F0:07        //
+
+//****** Audio mixer 48k
+//**********************
+//D0:09
+//D1:82 //disable SRC lip mode
+
+//D0:0A
+//D1:01
+
+//D0:1A
+//D1:01
+
+//D0:01
+//D1:F0
+
+//D0:03 //Amixer initial dtb
+//D1:00 //Amixer initial dtb
+ 
+//D0:04 //Amixer initial dtb
+//D1:00 //Amixer initial dtb
+
+//D0:05 //Amixer initial dtb
+//D1:10 //Amixer initial dtb
+	
+//D0:00 //Amixer disable
+//D1:50 //Amixer disable
+	
+//D0:02 //Amixer clear enable
+//D1:D3 //Amixer clear enable
+  
+//endif //TEST_AMIXER
+//27:0E //APLL clear disable
+//ifdef TEST_AMIXER
+//D0:00 //Amixer enable
+//D1:51 //Amixer enable
+//D0:02 //Amixer clear enable	
+//D1:53 //Amixer clear disable
+//endif //TEST_AMIXER
+
+//D0:54 
+//D1:87 
+//D0:59 
+//D1:18 
+
+//D0:0B
+//D1:80
+//D0:0A
+//D1:00
+
+//D0:1B
+//D1:80
+//D0:1A
+//D1:00
+//D0:02
+//D1:57
+//D0:59
+//D1:08

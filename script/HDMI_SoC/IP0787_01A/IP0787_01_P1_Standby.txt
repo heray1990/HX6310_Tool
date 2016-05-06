@@ -1,0 +1,25 @@
+
+// use DEMUX I2C0
+DEMUX:0
+
+
+// use DEBUG I2C
+A:8001_0000:0000_0000
+
+
+//97.453125MHz
+
+//**** HDMI AIP P1 Standby ****
+// Step 1 :(initial power down)
+// PowerDown_Mode (1D[1]/6D[1])=1 ; STANDBY_MODE (1D[0]/6D[0])=1
+D:006C:0000_0300
+// Step 2 :(inital value)
+//   EAh(en clk):[7]:En HDMI_ClkPath;[6:5]:LDO voltage of one Lane(0=1.4V;1=1.35V;2=1.3V;3=1.25V;4=1.2V;5=1.15V;6=1.1V;7=1.05V);[3]:En MHL_ClkPath;[2]:En Ln2_LDO(EQ & CDR);[1]:En Ln1_LDO(EQ & CDR & Ln1/2 digital);[0]:En Ln0 LDO(EQ & CDR & lane0 digital)
+//   EBh(terminal):[7]:En 50ohm_CK;[6]:En 50ohm_Ln2_Data;[5]:En 50ohm_Ln1_Data;[4]:En Cmn_Mode_Imp_Ln0_Data;[3]:En_Diff_Imp_Ln0_Data;[2]:En_Zrxsense_term_Ln0_Data;[1]:En_Auto_Imp_matching_circuit;[0]:En 24.576MHz_crystal_Clk
+D:00F0:42F9_2000
+D:00F4:0096_4A44
+// Step 3(enter standby mode)
+D:006C:0000_0100
+// Step 4 :STB_AREG0 (EAh/F1h)= A0  (enable TMDS CK path)
+D:00F0:42F9_A000
+

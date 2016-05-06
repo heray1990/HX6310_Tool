@@ -1,0 +1,165 @@
+//
+// PLLS 196.608MHz
+//
+
+// use DEBUG I2C
+A:80010000:00000000
+
+D:FFFF:00000000
+// Initial Setting
+// EN_LDOVCO=0, DITHEN=0, ENSCGDIV=0
+D:0028:07880800
+D:002c:003733c0
+D:0030:55040440
+D:0034:00001c00
+D:0038:09a00000
+D:003c:00000200
+// EN_CP=0, INI_BIAS=0
+D:0080:00000000
+// refclk=24576-->24576, CLKR=1
+// OutClock=196608, VCO_Clock=786432, CLKOD=2
+// int_part=32, frac_part=0/65536, CLKF=200000
+// SSEN=0
+D:0028:07880800
+D:002c:003723c0
+D:0030:55040440
+D:0034:00001c00
+D:0038:04000004
+D:003c:00000200
+// EN_LDOVCO=1
+D:003c:00000300
+// EN_CP=1, INI_BIAS=1
+D:0080:00000fff
+
+// Set PLLFRC_297000
+// PLLFRC 297.0MHz
+D:FFFF:00000000
+// Initial Setting
+// EN_LDOVCO=0, DITHEN=0, ENSCGDIV=0
+D:0058:07880800
+D:005c:003733c0
+D:0060:55040440
+D:0064:00001c00
+D:0068:09a00000
+D:006c:00000200
+// EN_CP=0, INI_BIAS=0
+D:0080:00000000
+// refclk=24576-->24576, CLKR=1
+// OutClock=297000, VCO_Clock=594000, CLKOD=1
+// int_part=24, frac_part=11136/65536, CLKF=152b80
+// SSEN=0
+D:0058:07880800
+D:005c:003723c0
+D:0060:55040440
+D:0064:00001c00
+D:0068:02a57002
+D:006c:00000200
+// EN_LDOVCO=1
+D:006c:00000300
+// DITHEN=1
+D:005c:003727c0
+// EN_CP=1, INI_BIAS=1
+D:0080:00000fff
+
+// Set ClockSel_INP_TP_4P
+// HDMI------->INP------->AsicB------->FRC------->SHR------->Port-Tran------->VBO
+//      clk_pix   clk_pix_4   clk_frc_i  clk_frc_o    clk_o            clk_o2
+//                 148.5       148.5      148.5      148.5            74.25
+//                 FRC/2       FRC/2      FRC/2      FRC/2            FRC/4
+
+
+D:FFFF:00000000
+
+// System 20h
+// [26]    clk_pix_1_2 = {*HDMI, HDMI/2}
+// [25:24] clk_pix_1_2_4 = {*FRC/2, HDMI, HDMI/4, FRC/4}
+// [22:21] clk_frc_i = {*FRC/2, FRC/4, HDMI, 0}
+// [20:19] clk_frc_i_s_x8 = {FRC/2, FRC/4, HDMI/4, *PLLS}
+// [18:16] clk_frc_o = {*FRC/2, FRC, HDMI/4, HDMI/2, PLLS}
+// [14:11] clk_o = {FRC/8, FRC/4, *FRC/2, 3=HDMI/4, 7=HDMI/2, 11=PLLS}
+// [10:8]  clk_o2 = {FRC/8, *FRC/4, HDMI/8, HDMI/4, PLLS/2}
+// [6:4]   clk_o2_vbo = {FRC/8, *FRC/4, HDMI/8, HDMI/4, PLLS/2}
+// [3]     clk_s = {PLLS/8, *PLLS/4}
+// [2]     clk_s_apb = {PLLS/8, *PLLS/4}
+// [1]     clk_s_ahb = {PLLS/4, *PLLS/2}
+// [0]     clk_s_cpu = {PLLS/2, *PLLS}
+D:0020:0018111F
+
+// [18:16] clk_audio = {clk_i2s, clk_i2s, clk_i2s, clk_i2s, PLLS/4, PLLS/8, PLLS/16, PLLS/32}
+// [0]     standby_mode
+D:001C:00000000
+
+//Set Backend_4p_tp
+// Backend
+  D:FFFF:0000_000E
+  D:0004:0870_0118  // vsize = 2160, vde_gen_ext = 280(?)
+  D:0008:000F_FFFF  // bypass control (don't cary)
+
+  D:0080:4A16_044C
+  D:0084:08CA_03C0
+  D:0088:C870_480A
+  D:008C:2FFC_0180  // pat = 5, bypassTP = 0
+  D:0090:3FFF_FFFF
+  D:00DC:0000_0084
+
+
+// OSD TP
+  D:005C:E898_C02C  // tg_release_freerun = 1, tg_en = 1, from backend 1-path tp
+//D:005C:6898_C02C  // tg_release_freerun = 1, tg_en = 0, from backend input
+  D:0060:0465_0780
+  D:0064:0438_2905
+  D:0068:0000_0000
+
+  D:0074:0000_FFF1
+  D:0078:FFFF_FFFF
+  D:007C:03CA_0222
+
+//D:0000:0000_0005  // dbg=5   pi_SHR
+//D:0000:0000_0014  // dbg=20  po_SHR
+//D:0000:0000_0038  // dbg=55  pi_port_train
+
+
+  A:18000000:0438_0780  //vsize,hsize
+  A:18000004:00F0_C030  //
+  A:18000010:0000_0800  //x step
+  A:18000014:0000_0800  //y step
+  A:18000018:0000_0000
+  A:1800001C:0000_0000
+  A:18000020:0000_0007
+  A:18000024:0001_0000  //TS off
+//A:18000024:0000_0000  //TS on
+  A:1800002C:0000_00C0
+  A:1800005C:0000_0000
+  A:18000060:0000_0000
+  A:18000064:0000_0000
+  A:18000068:0000_0000
+
+  A:18002000:0000_0001
+  A:18003000:0000_0001
+
+  A:18001000:0000_0001
+  A:18001004:0028_044C  //htotal,hsync
+  A:18001008:03C0_0050  //hstart,hsize
+  A:1800100C:0005_0898  //vtotal,vsize
+  A:18001010:0870_000A  //vstart,vsize
+  A:18001014:0001_8605  //reset,count
+  A:18001018:0000_0000
+  A:1801F000:0000_0001  //double buffer load
+  A:1801F018:0000_0000
+  A:1801F000:0000_0001  //double buffer load
+
+//Set VBO PHY
+  D:FFFF:0000_0002
+  D:0000:10FF_1200  //EN_VCOPH=1
+  D:001C:0000_0014  //BG_PD=1
+  D:0024:01FF_0118  //EN_BW_POST=0
+  D:002C:0001_0000  //PWN=1,RST_LANE=0,RST_BIST=0,INI_BIAS=0,EN_CP=0
+  D:0008:0041_0100  //CKS[7:0]=0,SDM_PL=1,CLKF[23:15]=80,DELTAM[7:0]=0
+  D:0018:3D00_0001  //EN_VCO=1,EN_XTAL_IN=0,REG_DITHEN=0,EN_LDOVCO=0,EN_SCGDIV=0,SSEN=0,CLKR[5:3]=0
+  D:0000:10FF_1200  //EN_VCOPH=1,CLKF[7]=0
+  D:0004:0000_0000  //DELTAM[15:8]=0,CLKF[6:0]=0,CLKF[14:8,LSB]=0,CROSS_P=0
+  D:000C:0000_E000  //CKS[10:8]=0
+  D:0010:0024_1000  //REF_8_16=0,CLKOD[2:0]=0,CLKR[2:0]=4
+  D:0018:3D40_0001  //EN_VCO=1,EN_XTAL_IN=0,REG_DITHEN=0,EN_LDOVCO=1,EN_SCGDIV=0,SSEN=0,CLKR[5:3]=0
+  D:002C:001F_0000  //PWN=1,RST_LANE=1,RST_BIST=1,INI_BIAS=1,EN_CP=1
+  D:002C:0001_0000  //PWN=1,RST_LANE=0,RST_BIST=0,INI_BIAS=0,EN_CP=0
