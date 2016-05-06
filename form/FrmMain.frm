@@ -111,7 +111,7 @@ Begin VB.Form FrmMain
       _ExtentY        =   13785
       _Version        =   393216
       Tabs            =   4
-      Tab             =   2
+      Tab             =   3
       TabsPerRow      =   5
       TabHeight       =   520
       BackColor       =   -2147483638
@@ -134,60 +134,40 @@ Begin VB.Form FrmMain
       Tab(1).ControlCount=   2
       TabCaption(2)   =   "White Balance"
       TabPicture(2)   =   "FrmMain.frx":2B32
-      Tab(2).ControlEnabled=   -1  'True
-      Tab(2).Control(0)=   "Label2(27)"
-      Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "Label2(1)"
-      Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "Label2(2)"
-      Tab(2).Control(2).Enabled=   0   'False
-      Tab(2).Control(3)=   "Label2(3)"
-      Tab(2).Control(3).Enabled=   0   'False
-      Tab(2).Control(4)=   "Label2(4)"
-      Tab(2).Control(4).Enabled=   0   'False
-      Tab(2).Control(5)=   "Label2(5)"
-      Tab(2).Control(5).Enabled=   0   'False
-      Tab(2).Control(6)=   "Label2(8)"
-      Tab(2).Control(6).Enabled=   0   'False
-      Tab(2).Control(7)=   "Label2(9)"
-      Tab(2).Control(7).Enabled=   0   'False
-      Tab(2).Control(8)=   "HScrollR"
-      Tab(2).Control(8).Enabled=   0   'False
-      Tab(2).Control(9)=   "TextR"
-      Tab(2).Control(9).Enabled=   0   'False
-      Tab(2).Control(10)=   "HScrollG"
-      Tab(2).Control(10).Enabled=   0   'False
+      Tab(2).ControlEnabled=   0   'False
+      Tab(2).Control(0)=   "Command6"
+      Tab(2).Control(1)=   "ComboColor_temp"
+      Tab(2).Control(2)=   "Frame2"
+      Tab(2).Control(3)=   "TextBOffset"
+      Tab(2).Control(4)=   "TextGOffset"
+      Tab(2).Control(5)=   "TextROffset"
+      Tab(2).Control(6)=   "TextB"
+      Tab(2).Control(7)=   "TextG"
+      Tab(2).Control(8)=   "HScrollBOffset"
+      Tab(2).Control(9)=   "HScrollGOffset"
+      Tab(2).Control(10)=   "HScrollROffset"
       Tab(2).Control(11)=   "HScrollB"
-      Tab(2).Control(11).Enabled=   0   'False
-      Tab(2).Control(12)=   "HScrollROffset"
-      Tab(2).Control(12).Enabled=   0   'False
-      Tab(2).Control(13)=   "HScrollGOffset"
-      Tab(2).Control(13).Enabled=   0   'False
-      Tab(2).Control(14)=   "HScrollBOffset"
-      Tab(2).Control(14).Enabled=   0   'False
-      Tab(2).Control(15)=   "TextG"
-      Tab(2).Control(15).Enabled=   0   'False
-      Tab(2).Control(16)=   "TextB"
-      Tab(2).Control(16).Enabled=   0   'False
-      Tab(2).Control(17)=   "TextROffset"
-      Tab(2).Control(17).Enabled=   0   'False
-      Tab(2).Control(18)=   "TextGOffset"
-      Tab(2).Control(18).Enabled=   0   'False
-      Tab(2).Control(19)=   "TextBOffset"
-      Tab(2).Control(19).Enabled=   0   'False
-      Tab(2).Control(20)=   "Frame2"
-      Tab(2).Control(20).Enabled=   0   'False
-      Tab(2).Control(21)=   "ComboColor_temp"
-      Tab(2).Control(21).Enabled=   0   'False
-      Tab(2).Control(22)=   "Command6"
-      Tab(2).Control(22).Enabled=   0   'False
+      Tab(2).Control(12)=   "HScrollG"
+      Tab(2).Control(13)=   "TextR"
+      Tab(2).Control(14)=   "HScrollR"
+      Tab(2).Control(15)=   "Label2(9)"
+      Tab(2).Control(16)=   "Label2(8)"
+      Tab(2).Control(17)=   "Label2(5)"
+      Tab(2).Control(18)=   "Label2(4)"
+      Tab(2).Control(19)=   "Label2(3)"
+      Tab(2).Control(20)=   "Label2(2)"
+      Tab(2).Control(21)=   "Label2(1)"
+      Tab(2).Control(22)=   "Label2(27)"
       Tab(2).ControlCount=   23
       TabCaption(3)   =   "Platform attribute "
       TabPicture(3)   =   "FrmMain.frx":2B4E
-      Tab(3).ControlEnabled=   0   'False
+      Tab(3).ControlEnabled=   -1  'True
       Tab(3).Control(0)=   "Command_save"
+      Tab(3).Control(0).Enabled=   0   'False
       Tab(3).Control(1)=   "Frame4"
+      Tab(3).Control(1).Enabled=   0   'False
       Tab(3).Control(2)=   "Cmd_platform_status"
+      Tab(3).Control(2).Enabled=   0   'False
       Tab(3).ControlCount=   3
       Begin VB.Frame Frame5 
          Caption         =   "6310_update"
@@ -234,7 +214,7 @@ Begin VB.Form FrmMain
       Begin VB.CommandButton Cmd_platform_status 
          Caption         =   "Status"
          Height          =   735
-         Left            =   -68880
+         Left            =   6120
          TabIndex        =   66
          Top             =   5040
          Width           =   1095
@@ -242,7 +222,7 @@ Begin VB.Form FrmMain
       Begin VB.Frame Frame4 
          Caption         =   "Product attribute"
          Height          =   3615
-         Left            =   -73680
+         Left            =   1320
          TabIndex        =   52
          Top             =   1080
          Width           =   8415
@@ -425,7 +405,7 @@ Begin VB.Form FrmMain
       Begin VB.CommandButton Command_save 
          Caption         =   "Save"
          Height          =   735
-         Left            =   -67560
+         Left            =   7440
          TabIndex        =   51
          Top             =   5040
          Width           =   1095
@@ -491,7 +471,7 @@ Begin VB.Form FrmMain
       Begin VB.CommandButton Command6 
          Caption         =   "Status"
          Height          =   495
-         Left            =   8880
+         Left            =   -66120
          TabIndex        =   41
          Top             =   4320
          Width           =   1095
@@ -675,7 +655,7 @@ Begin VB.Form FrmMain
       Begin VB.ComboBox ComboColor_temp 
          Height          =   315
          ItemData        =   "FrmMain.frx":2C0C
-         Left            =   1440
+         Left            =   -73560
          List            =   "FrmMain.frx":2C1F
          Style           =   2  'Dropdown List
          TabIndex        =   29
@@ -685,7 +665,7 @@ Begin VB.Form FrmMain
       Begin VB.Frame Frame2 
          Caption         =   "Basic"
          Height          =   2535
-         Left            =   6840
+         Left            =   -68160
          TabIndex        =   23
          Top             =   1440
          Width           =   3135
@@ -741,7 +721,7 @@ Begin VB.Form FrmMain
       Begin VB.TextBox TextBOffset 
          Alignment       =   1  'Right Justify
          Height          =   285
-         Left            =   5280
+         Left            =   -69720
          MaxLength       =   3
          TabIndex        =   22
          Text            =   "00"
@@ -751,7 +731,7 @@ Begin VB.Form FrmMain
       Begin VB.TextBox TextGOffset 
          Alignment       =   1  'Right Justify
          Height          =   285
-         Left            =   5280
+         Left            =   -69720
          MaxLength       =   3
          TabIndex        =   21
          Text            =   "00"
@@ -761,7 +741,7 @@ Begin VB.Form FrmMain
       Begin VB.TextBox TextROffset 
          Alignment       =   1  'Right Justify
          Height          =   285
-         Left            =   5280
+         Left            =   -69720
          MaxLength       =   3
          TabIndex        =   20
          Text            =   "00"
@@ -771,7 +751,7 @@ Begin VB.Form FrmMain
       Begin VB.TextBox TextB 
          Alignment       =   1  'Right Justify
          Height          =   285
-         Left            =   5280
+         Left            =   -69720
          MaxLength       =   3
          TabIndex        =   19
          Text            =   "00"
@@ -781,7 +761,7 @@ Begin VB.Form FrmMain
       Begin VB.TextBox TextG 
          Alignment       =   1  'Right Justify
          Height          =   285
-         Left            =   5280
+         Left            =   -69720
          MaxLength       =   3
          TabIndex        =   18
          Text            =   "00"
@@ -790,7 +770,7 @@ Begin VB.Form FrmMain
       End
       Begin VB.HScrollBar HScrollBOffset 
          Height          =   255
-         Left            =   1320
+         Left            =   -73680
          Max             =   192
          Min             =   64
          TabIndex        =   17
@@ -800,7 +780,7 @@ Begin VB.Form FrmMain
       End
       Begin VB.HScrollBar HScrollGOffset 
          Height          =   255
-         Left            =   1320
+         Left            =   -73680
          Max             =   192
          Min             =   64
          TabIndex        =   16
@@ -810,7 +790,7 @@ Begin VB.Form FrmMain
       End
       Begin VB.HScrollBar HScrollROffset 
          Height          =   255
-         Left            =   1320
+         Left            =   -73680
          Max             =   192
          Min             =   64
          TabIndex        =   15
@@ -820,7 +800,7 @@ Begin VB.Form FrmMain
       End
       Begin VB.HScrollBar HScrollB 
          Height          =   255
-         Left            =   1320
+         Left            =   -73680
          Max             =   255
          TabIndex        =   14
          Top             =   2640
@@ -829,7 +809,7 @@ Begin VB.Form FrmMain
       End
       Begin VB.HScrollBar HScrollG 
          Height          =   255
-         Left            =   1320
+         Left            =   -73680
          Max             =   255
          MousePointer    =   4  'Icon
          TabIndex        =   13
@@ -840,7 +820,7 @@ Begin VB.Form FrmMain
       Begin VB.TextBox TextR 
          Alignment       =   1  'Right Justify
          Height          =   285
-         Left            =   5280
+         Left            =   -69720
          MaxLength       =   3
          TabIndex        =   7
          Text            =   "00"
@@ -849,7 +829,7 @@ Begin VB.Form FrmMain
       End
       Begin VB.HScrollBar HScrollR 
          Height          =   255
-         Left            =   1320
+         Left            =   -73680
          Max             =   255
          TabIndex        =   5
          Top             =   1920
@@ -878,7 +858,7 @@ Begin VB.Form FrmMain
          Caption         =   "White Balance"
          Height          =   255
          Index           =   9
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   30
          Top             =   1080
          Width           =   1095
@@ -888,7 +868,7 @@ Begin VB.Form FrmMain
          Caption         =   "White Balance"
          Height          =   255
          Index           =   8
-         Left            =   720
+         Left            =   -74280
          TabIndex        =   28
          Top             =   600
          Width           =   1455
@@ -898,7 +878,7 @@ Begin VB.Form FrmMain
          Caption         =   "BOffset"
          Height          =   255
          Index           =   5
-         Left            =   600
+         Left            =   -74400
          TabIndex        =   12
          Top             =   3720
          Width           =   735
@@ -908,7 +888,7 @@ Begin VB.Form FrmMain
          Caption         =   "GOffset"
          Height          =   255
          Index           =   4
-         Left            =   600
+         Left            =   -74400
          TabIndex        =   11
          Top             =   3360
          Width           =   735
@@ -918,7 +898,7 @@ Begin VB.Form FrmMain
          Caption         =   "ROffset"
          Height          =   255
          Index           =   3
-         Left            =   600
+         Left            =   -74400
          TabIndex        =   10
          Top             =   3000
          Width           =   735
@@ -928,7 +908,7 @@ Begin VB.Form FrmMain
          Caption         =   "B"
          Height          =   255
          Index           =   2
-         Left            =   960
+         Left            =   -74040
          TabIndex        =   9
          Top             =   2640
          Width           =   735
@@ -938,7 +918,7 @@ Begin VB.Form FrmMain
          Caption         =   "G"
          Height          =   255
          Index           =   1
-         Left            =   960
+         Left            =   -74040
          TabIndex        =   8
          Top             =   2280
          Width           =   735
@@ -948,7 +928,7 @@ Begin VB.Form FrmMain
          Caption         =   "R"
          Height          =   255
          Index           =   27
-         Left            =   960
+         Left            =   -74040
          TabIndex        =   6
          Top             =   1920
          Width           =   735
@@ -1230,15 +1210,19 @@ Dim start As Long
 
 
   For i = 0 To frag_num
-            bar_status = round((i * 100 / frag_num), 0)
-            ProgressBar1.value = bar_status
-            StatusBar.SimpleText = "Processing:" & bar_status & " %"
-            If ((base + i * 256) Mod sector_size = 0) Then
-                AndesWriteSpiData base + i * 256, Inbyte(i * 256), 4
-                AndesWriteSpiData base + i * 256 + 4, Inbyte(i * 256 + 4), 252
-            Else
-                AndesWriteSpiData base + i * 256, Inbyte(i * 256), 256
-            End If
+    bar_status = round((i * 100 / frag_num), 0)
+    ProgressBar1.value = bar_status
+    StatusBar.SimpleText = "Processing:" & bar_status & " %"
+    If ((base + i * 256) Mod sector_size = 0) Then
+      AndesWriteSpiData base + i * 256, Inbyte(i * 256), 4
+      AndesWriteSpiData base + i * 256 + 4, Inbyte(i * 256 + 4), 252
+    Else
+      If i = frag_num Then
+        AndesWriteSpiData base + UBound(Inbyte), Inbyte(UBound(Inbyte)), UBound(Inbyte) - (i - 1) * 256
+      Else
+        AndesWriteSpiData base + i * 256, Inbyte(i * 256), 256
+      End If
+    End If
   Next i
   AndesNormalMode
   hw_crc = AndesReadCrc(0, UBound(Inbyte) + 1)
@@ -1249,9 +1233,9 @@ Dim start As Long
   PrintLog " [Use " & (Timer() - start) & " seconds]"
 
   If (hw_crc = crc_check) Then
-  MsgBox "CRC PASS...  "
+    MsgBox "CRC PASS...  "
   Else
-  MsgBox "CRC NG...  "
+    MsgBox "CRC NG...  "
   End If
 
 '  status = AndesIsp(Inbyte(0), UBound(Inbyte))
